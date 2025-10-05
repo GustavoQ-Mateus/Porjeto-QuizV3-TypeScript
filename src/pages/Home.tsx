@@ -1,14 +1,17 @@
-import { useNavigate } from "react-router-dom"
-import { useQuiz } from "../state/quiz"
-import { useState} from "react"
-    import type { Dificuldade, Modo } from '@/utils/quiz'
-    export function Home (){
-        const nav = useNavigate()
-        const { state, dispatch} = useQuiz()
-        const [ modo,setModo] = useState<Modo>('relacao')
-        const [ dificuldade,setDificuldade] = useState<Dificuldade>('Easy')
-        return (
-                <main className="container">
+import { useNavigate } from 'react-router-dom'
+import { useQuiz } from '@/state/quiz'
+import { useState } from 'react'
+import type { Dificuldade, Modo } from '@/utils/quiz'
+
+export function Home(){
+  const nav = useNavigate()
+  const { state, dispatch } = useQuiz()
+  const [nome,setNome] = useState(state.nome)
+  const [modo,setModo] = useState<Modo>('relacao')
+  const [dificuldade,setDificuldade] = useState<Dificuldade>('Easy')
+
+  return (
+    <main className="container">
       <div className="grid" style={{gridTemplateColumns:'1fr',gap:16}}>
         <section className="card">
           <h2 style={{color:'var(--color-primary)'}}>Bem-vindo!</h2>
@@ -40,5 +43,5 @@ import { useState} from "react"
         </section>
       </div>
     </main>
-        )
-    }
+  )
+}
