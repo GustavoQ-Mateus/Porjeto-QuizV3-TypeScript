@@ -1,5 +1,7 @@
 import { createContext, useContext, useMemo, useReducer } from "react";
 import { temposPorDificuldade, calcBonus, rankingkey, type Modo, type Dificuldade } from "../utils/quiz";
+import { AnimationPlaybackLifecycles } from "framer-motion";
+import { g } from "framer-motion/client";
 const safeLS: Storage | null = typeof window !== 'undefined' && typeof window.localStorage !== 'undefined' ? window.localStorage : null
 export type EstadoQuiz = {
     nome: string
@@ -43,4 +45,36 @@ export function reducer(state: EstadoQuiz, action: Action): EstadoQuiz{
     switch(action.type){
         case 'setNome':
             safeLS?.setItem('quizNome', action.nome)
+            return { ...state, nome: action.nome }
+            case 'config':{
+                const tempoPergunta = temposPorDificuldade[action.dificuldade]
+                return { ...state, modo:action.modo, dificuldade:action.dificuldade, tempoPergunta, pontuacao:0, bonusTotal:0, total: action.total??6, restantes: action.total??6, stats:[], concluido:false }
+  }
+            case 'finalizar': {
+                const ls = safeLS || (globalThis as any).localStorage || null
+                const key = rankingKey(state.modo, state.dificuldade)
+                const raw = ls?.getItem(key)
+                const list = raw? JSON.parse(raw) as { 
+                    nome:string;
+                    pontos:number}[] : []
+                const nome = ls?.getItem('quizNome') || state.nome || 'Você'
+                list.push({ nome, pontos: state.pontuacao })
+                list.sort((a,b) => b.pontos - a.pontos)
+                ls?.setItem(key, JSON.stringify(list))
+                ls?.setItem('quizLastRankingConteudo', state.modo)
+                ls?.setItem('quizLastRankingDificuldade', state.dificuldade)
+                return { ...state, concluido:true }
+            }
+            case 'reset': 
+            return { ...inicial, nome: state.nome }
+            default:
+                return state
+    }          
 }
+const QuizCtx = createContext<{state:EstadoQuiz; dispatch: React.Dispatch<Action>}>({state:inicial, dispatch: () => {}})
+export function QuizProvider({ children }:{children: React.ReactNode}){
+  const [state, dispatch] = useReducer(reducer, inicial)
+  const value = useMemo(()=>({state, dispatch}),[state])
+  return <QuizCtx.Provider value={value}>{children}</QuizCtx.Provider>
+}
+export function useQuiz(){return useContext(QuizCtx)}
