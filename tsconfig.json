@@ -21,6 +21,6 @@
             "@/utils/*": ["src/utils/*"]
         }
     },
-    "include": ["src"],
+    "include": ["src", "src/App.tsx", "src/main.tsx"],
     "references": []
 }
