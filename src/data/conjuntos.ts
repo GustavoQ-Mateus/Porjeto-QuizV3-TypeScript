@@ -1,5 +1,5 @@
 import type { PerguntaAlternativas } from "@/utils/quiz"
-import const perguntasConjuntos: PerguntaAlternativas[] = [
+export const perguntasConjuntos: PerguntaAlternativas[] = [
 // EASY 1-25
   { dificuldade: 'Easy', pergunta: 'Qual é o conjunto que representa os números naturais menores que 4, considerando que os números naturais começam em 0?', alternativas: ['{1,2,3}', '{0,1,2,3}', '{-1,0,1,2,3}', '{2,3,4}'], respostaCorreta: 1, explicacao: 'Os números naturais, incluindo o zero, são {0,1,2,3,...}. Menores que 4 são {0,1,2,3}.' },
   { dificuldade: 'Easy', pergunta: 'Qual é o conjunto complementar de A={1,2} no universo U={1,2,3,4}?', alternativas: ['{3,4}', '{1,2}', '{1,2,3,4}', '{2,3}'], respostaCorreta: 0, explicacao: 'O complementar contém todos os elementos de U que não estão em A, ou seja, {3,4}.' },
