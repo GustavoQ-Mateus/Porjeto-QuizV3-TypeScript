@@ -1,6 +1,10 @@
 import type { PerguntaRelacao } from '@/utils/quiz'
-// Conteúdo convertido de conteudoRelacao.js
-// Para manter paridade, não altere textos nem campos
+/**
+ * Banco de perguntas do modo Relação.
+ * Convertido do arquivo original conteudoRelacao.js.
+ * NOTA: Manter paridade exata dos textos para consistência das explicações.
+ * Tipagem é relaxada via @ts-nocheck para permitir carga direta do JSON estruturado.
+ */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 export const perguntasRelacao: PerguntaRelacao[] = [
