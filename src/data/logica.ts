@@ -1,5 +1,9 @@
 import type { PerguntaAlternativas } from '@/utils/quiz'
-
+/**
+ * Banco de perguntas de Lógica Proposicional.
+ * Cada objeto contém: dificuldade, enunciado, alternativas, índice da resposta correta e explicação.
+ * Manter textos inalterados para preservar coerência das explicações fornecidas.
+ */
 export const perguntasLogica: PerguntaAlternativas[] = [
   // EASY 1-25
   { dificuldade: 'Easy', pergunta: "Qual é a negação de 'Está chovendo'?", alternativas: ["Está chovendo muito", "Não está chovendo", "Está sol", "Vai chover"], respostaCorreta: 1, explicacao: "A negação de 'Está chovendo' é 'Não está chovendo'." },
