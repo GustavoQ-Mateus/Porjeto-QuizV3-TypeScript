@@ -4,6 +4,11 @@ import { useQuiz } from '@/state/quiz'
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Bar, Doughnut } from 'react-chartjs-2'
 ChartJS.register(BarElement, CategoryScale, LinearScale, ArcElement, Tooltip, Legend)
+/**
+ * Página de Resultado.
+ * Apresenta métricas consolidadas (acertos, erros, tempos) e gráficos de distribuição.
+ * Garante redirecionamento para Home caso usuário tente acessar sem concluir quiz.
+ */
 export function Resultado(){
   const { state, dispatch } = useQuiz()
   const nav = useNavigate()
