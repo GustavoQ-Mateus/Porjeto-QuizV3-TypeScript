@@ -1,4 +1,9 @@
 import type { PerguntaAlternativas } from "@/utils/quiz"
+/**
+ * Banco de perguntas de Teoria dos Conjuntos.
+ * Estrutura: dificuldade, enunciado, alternativas, índice da resposta correta, explicação.
+ * Observação: manter textos inalterados para não invalidar explicações.
+ */
 export const perguntasConjuntos: PerguntaAlternativas[] = [
 // EASY 1-25
   { dificuldade: 'Easy', pergunta: 'Qual é o conjunto que representa os números naturais menores que 4, considerando que os números naturais começam em 0?', alternativas: ['{1,2,3}', '{0,1,2,3}', '{-1,0,1,2,3}', '{2,3,4}'], respostaCorreta: 1, explicacao: 'Os números naturais, incluindo o zero, são {0,1,2,3,...}. Menores que 4 são {0,1,2,3}.' },
