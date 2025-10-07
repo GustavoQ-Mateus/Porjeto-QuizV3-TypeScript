@@ -1,4 +1,8 @@
 import { useTheme } from "@/state/theme";
+/**
+ * Página de Configurações simples (atualmente apenas troca de tema).
+ * Pode ser expandida futuramente para volume de perguntas, sons, acessibilidade etc.
+ */
 export function Config(){
     const { theme, toggle } = useTheme()
     return (
