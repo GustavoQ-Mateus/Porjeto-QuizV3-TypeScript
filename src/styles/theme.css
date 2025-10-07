@@ -1,3 +1,66 @@
+/*
+============================================
+    Design Tokens e Estilos Globais (theme.css)
+============================================
+
+Propósito
+---------
+Define o conjunto central de variáveis CSS (design tokens) usadas na aplicação
+para suportar rapidamente o modo claro/escuro, consistência visual e fácil
+extensão futura. O alternar de tema ocorre via atributo `data-theme` aplicado
+no elemento <html> (ver ThemeProvider em `state/theme.tsx`).
+
+Categorias de tokens
+--------------------
+--color-bg          : Cor de fundo principal da página
+--color-card        : Superfície padrão de cartões/componentes
+--color-card-alt    : Superfície alternativa (variação sutil)
+--color-primary     : Cor primária (ações principais / destaque)
+--color-secondary   : Gradiente secundário / apoio à primária
+--color-text        : Texto padrão em alto contraste
+--color-muted       : Texto de apoio / labels
+--color-border      : Bordas e divisores
+--color-track       : Trilhos de barras de progresso / backgrounds neutros
+--color-danger      : Feedback negativo / botões de ação destrutiva
+--color-success     : Feedback positivo / estados de sucesso
+--shadow-card       : Sombra padrão de cartões (elevação)
+
+Modo escuro
+-----------
+Sob `[data-theme="dark"]` redefinimos apenas os tokens necessários. Todos os
+componentes consomem as mesmas variáveis, evitando duplicação de regras.
+
+Boas práticas para extensão
+---------------------------
+1. Ao adicionar novo token, declare nas duas raízes (:root e [data-theme="dark"]).
+2. Evite usar cores "hard-coded" nos componentes; referencie sempre a var().
+3. Para novos estados (ex: warning), siga padrão `--color-warning` etc.
+4. Gradientes devem começar de tokens já existentes quando possível.
+
+Acessibilidade
+--------------
+Verifique contraste mínimo (WCAG AA) ao alterar tokens de texto/fundo.
+Ferramentas como o Lighthouse ou axe podem ser usadas após ajustes.
+
+Classes utilitárias principais
+------------------------------
+.container  : Largura máxima e padding horizontal
+.card       : Superfície com borda, sombra e radius
+.btn        : Base comum de botões (display inline-flex, padding, radius)
+.btn-roxo   : Botão primário (usa gradiente entre primary/secondary)
+.btn-danger : Ação destrutiva (usa --color-danger)
+.input      : Campos de formulário
+.label      : Estilização de labels/legendas
+.grid / .grid-3 : Layouts responsivos baseados em CSS Grid
+
+Responsividade
+--------------
+Breakpoint atual customizado em 720px para ajustar `.grid-3` -> 1 coluna.
+Adapte conforme necessidades de design futuro.
+
+============================================
+*/
+
 :root{
     --color-bg:#f7f8fc;
     --color-card:#ffffff;
@@ -12,6 +75,9 @@
     --color-success:#16a34a;
     --shadow-card:0 8px 32px rgba(17,24,39,0.08);
 }
+/* ========================
+    Tema Escuro (override)
+    ======================== */
 [data-theme="dark"] {
     --color-bg:#0f1117;
     --color-card:#151a23;
@@ -26,6 +92,7 @@
     --color-success:#2bdc81;
     --shadow-card:0 10px 30px rgba(0,0,0,0.55);
 }
+/* Elementos estruturais básicos */
 html,body,#root{height:100%}
 body{
     margin:0;
@@ -33,15 +100,18 @@ body{
     color:var(--color-text);
     font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
 
+/* Layout container padrão */
 .container{
     max-width:960px;
     margin:0 auto;
     padding:16px}
+/* Superfície base de cartão */
 .card{
     background:var(--color-card);
     box-shadow:var(--shadow-card);
     border:1px solid var(--color-border);
     border-radius:14px;padding:16px}
+/* Botão base (comportamento neutro) */
 .btn{
     display:inline-flex;
     align-items:center;
@@ -50,25 +120,33 @@ body{
     border:none;
     cursor:pointer;
     font-weight:600}
+/* Botão primário com gradiente (usar apenas para CTAs principais) */
 .btn-roxo{
     background:linear-gradient(50deg,var(--color-primary),var(--color-secondary),var(--color-primary));
     color:#fff}
+/* Botão de ação destrutiva / crítica */
 .btn-danger{
     background:var(--color-danger);
     color:#fff}
+/* Campos de formulário */
 .input{
     padding:12px;
     border-radius:10px;
     border:1px solid var(--color-border);
     background:var(--color-card);
     color:var(--color-text)}
+/* Texto de apoio / label de campos */
 .label{
     color:var(--color-muted);
     font-weight:600}
+/* Grid utilitário genérico */
 .grid{
     display:grid;
     gap:12px}
+/* Grid de 3 colunas (mobile colapsa via media query) */
 .grid-3{
     grid-template-columns:repeat(3,1fr)}
 
-@media (max-width: 720px){.grid-3{grid-template-columns:1fr}}
+@media (max-width: 720px){
+    .grid-3{grid-template-columns:1fr}
+}
