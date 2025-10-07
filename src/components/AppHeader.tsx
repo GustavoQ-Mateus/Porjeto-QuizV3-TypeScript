@@ -1,6 +1,14 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '../state/theme'
 
+/**
+ * Cabeçalho da aplicação.
+ * Funções principais:
+ * - Exibir navegação curta (Ranking, Config)
+ * - Permitir alternar tema claro/escuro
+ * - Ser fixo (sticky) no topo para acesso rápido
+ * A variável `loc` (location) é mantida caso futuramente queira destacar a rota ativa.
+ */
 export function AppHeader(){
   const { theme, toggle } = useTheme()
   const loc = useLocation()
