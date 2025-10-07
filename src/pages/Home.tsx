@@ -3,6 +3,10 @@ import { useQuiz } from '@/state/quiz'
 import { useState } from 'react'
 import type { Dificuldade, Modo } from '@/utils/quiz'
 
+/**
+ * Página inicial: coleta Nome, Dificuldade e Modo antes de iniciar o quiz.
+ * Dispara ação 'config' para preparar estado global e redireciona para /quiz/:modo.
+ */
 export function Home(){
   const nav = useNavigate()
   const { state, dispatch } = useQuiz()
