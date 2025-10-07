@@ -1,3 +1,10 @@
+/**
+ * Componente raiz da aplicação.
+ * Responsável por:
+ * - Prover contextos globais de Tema e Quiz
+ * - Declarar as rotas principais da SPA (Home, Quiz, Resultado, Ranking, Config)
+ * - Renderizar o cabeçalho fixo (AppHeader)
+ */
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { AppHeader } from '@/components/AppHeader'
 import { Home } from '@/pages/Home'
