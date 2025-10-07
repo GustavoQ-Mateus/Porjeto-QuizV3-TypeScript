@@ -7,6 +7,11 @@ function labelConteudo(modo:Modo){
   return 'Relação'
 }
 
+/**
+ * Página de Ranking.
+ * Lê pontuações persistidas (por modo + dificuldade) e permite reset local.
+ * Chaves: quizRanking_{modo}_{dificuldade}.
+ */
 export function Ranking(){
 const [conteudo,setConteudo] = useState<Modo>(()=> (localStorage.getItem('quizLastRankingConteudo') as Modo) || 'relacao')
 const [dificuldade,setDificuldade] = useState<Dificuldade>(()=> (localStorage.getItem('quizLastRankingDificuldade') as Dificuldade) || 'Easy')
