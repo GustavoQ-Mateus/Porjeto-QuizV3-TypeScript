@@ -7,6 +7,15 @@ import { perguntasRelacao } from '@/data/relacao'
 import { perguntasLogica } from '@/data/logica'
 import { perguntasConjuntos } from '@/data/conjuntos'
 
+/**
+ * Página do Quiz.
+ * Fluxo:
+ * - Seleciona subconjunto aleatório de perguntas filtradas por dificuldade e modo.
+ * - Controla temporizador regressivo por pergunta; timeout registra resposta incorreta automática.
+ * - Aplica animações de transição (Framer Motion) e feedback visual de acerto/erro.
+ * - Ao finalizar, despacha 'finalizar' e navega para /resultado.
+ * Acessibilidade: usa aria-live e foco programático no enunciado em cada troca.
+ */
 export function Quiz(){
   const { modo } = useParams()
   const nav = useNavigate()
